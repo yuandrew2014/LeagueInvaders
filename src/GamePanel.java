@@ -16,8 +16,19 @@ public class GamePanel extends JPanel implements ActionListener,KeyListener {
 	int CurrentState = MENU_STATE;
 	Timer t1;
 	Font titleFont;
+	Font titleFont2;
+	Font titleFont3;
+	Font titleFont4;
+	Font titleFont5;
+	Font titleFont6;
+	Rocketship r1 = new Rocketship(250,700,50,50);
 	public GamePanel() {
-		titleFont = new Font("Aleygra",Font.PLAIN,48);
+		titleFont = new Font("Alegreya",Font.PLAIN,48);
+		titleFont2= new Font("Alegreya",Font.PLAIN,24);
+		titleFont3= new Font("Alegreya",Font.PLAIN,24);
+		titleFont4 = new Font("Alegreya",Font.PLAIN,48);
+		titleFont5= new Font("Alegreya",Font.PLAIN,24);
+		titleFont6= new Font("Alegreya",Font.PLAIN,24);
 		 t1 = new Timer(1000/60, this);
 		 
 
@@ -73,6 +84,9 @@ public void keyPressed(KeyEvent e) {
 
         CurrentState = MENU_STATE;
 	}
+	if(e.getKeyCode()==KeyEvent.VK_UP) {
+		r1.x+= 100;
+	}
 }
 }
 @Override
@@ -91,16 +105,20 @@ void drawMenu(Graphics g) {
 	g.fillRect(0,0,500,800);
 	g.setFont(titleFont);
 	g.setColor(Color.WHITE);
-	g.drawString("ii luv pi", 180, 400);
+	g.drawString("LEAGUE INVADERS", 30, 200);
+	g.setFont(titleFont2);
+	g.drawString("Press ENTER to start", 120, 400);
+	g.setFont(titleFont3);
+	g.drawString("Press SPACE for instructions", 70, 600);
 }
 void updateGameState() {
-	
+	r1.update();
 
 }
 void drawGameState(Graphics g) {
 	g.setColor(Color.BLACK);
 	g.fillRect(0,0,500,800);
-	
+	r1.draw(g);
 }
 void updateEndState() {
 	
@@ -109,6 +127,13 @@ void updateEndState() {
 void drawEndState(Graphics g) {
 	g.setColor(Color.RED);
 	g.fillRect(0, 0,500,800);
+	g.setFont(titleFont4);
+	g.setColor(Color.BLACK);
+	g.drawString("GAME OVER", 110,200);
+	g.setFont(titleFont5);
+	g.drawString("You killed"+" enemies", 130, 400);
+	g.setFont(titleFont6);
+	g.drawString("Press ENTER to restart", 115, 600);
 }
 }
 

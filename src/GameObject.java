@@ -17,7 +17,7 @@ void update() {
 	
 }
 void draw(Graphics g) {
-	g.drawRect(10,10,100,100);
+
 }
 }
 

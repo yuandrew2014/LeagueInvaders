@@ -14,6 +14,7 @@ public class GamePanel extends JPanel implements ActionListener,KeyListener {
 	final int GAME_STATE = 1;
 	final int END_STATE = 2;
 	int CurrentState = MENU_STATE;
+	ObjectManager o1;
 	Timer t1;
 	Font titleFont;
 	Font titleFont2;
@@ -22,6 +23,7 @@ public class GamePanel extends JPanel implements ActionListener,KeyListener {
 	Font titleFont5;
 	Font titleFont6;
 	Rocketship r1 = new Rocketship(250,700,50,50);
+	
 	public GamePanel() {
 		titleFont = new Font("Alegreya",Font.PLAIN,48);
 		titleFont2= new Font("Alegreya",Font.PLAIN,24);
@@ -30,7 +32,7 @@ public class GamePanel extends JPanel implements ActionListener,KeyListener {
 		titleFont5= new Font("Alegreya",Font.PLAIN,24);
 		titleFont6= new Font("Alegreya",Font.PLAIN,24);
 		 t1 = new Timer(1000/60, this);
-		 
+		o1 = new ObjectManager(r1);
 
 
 	}
@@ -80,21 +82,36 @@ public void keyPressed(KeyEvent e) {
 	if(e.getKeyCode()==KeyEvent.VK_ENTER) {
 		System.out.println(CurrentState);
 	CurrentState +=1;
+	}
 	if(CurrentState > END_STATE){
 
         CurrentState = MENU_STATE;
 	}
-	if(e.getKeyCode()==KeyEvent.VK_UP) {
-		r1.x+= 100;
+	if(e.getKeyCode()==KeyEvent.VK_LEFT) {
+		 r1.rup =true;
+		 System.out.println("up");
 	}
+	if(e.getKeyCode()==KeyEvent.VK_RIGHT) {
+		 r1.rdown =true;
+		 System.out.println("up");
+	}
+	if(e.getKeyCode()==KeyEvent.VK_DOWN) {
+		 r1.rright =true;
+		 System.out.println("up");
+		 
+	}
+	if(e.getKeyCode()==KeyEvent.VK_UP) {
+		 r1.rleft =true;
+		 System.out.println("up");
 }
 }
 @Override
 public void keyReleased(KeyEvent a) {
 	// TODO Auto-generated method stub
-	
-	
-
+	r1.rup = false;
+	r1.rdown = false;
+r1.rright = false;
+r1.rleft = false;
 }
 void updateMenu() {
 	
@@ -112,13 +129,13 @@ void drawMenu(Graphics g) {
 	g.drawString("Press SPACE for instructions", 70, 600);
 }
 void updateGameState() {
-	r1.update();
+	o1.update();
 
 }
 void drawGameState(Graphics g) {
 	g.setColor(Color.BLACK);
 	g.fillRect(0,0,500,800);
-	r1.draw(g);
+	o1.draw(g);
 }
 void updateEndState() {
 	

@@ -1,24 +1,22 @@
 import java.awt.Color;
 import java.awt.Graphics;
 
-public class Projectiles extends GameObject{
-	int speed;
-	Projectiles(int x, int y, int width, int height){
+public class Alien extends GameObject{
+
+	
+
+	Alien(int x, int y, int width, int height){
 		super(x,y,width,height);
 		this.height = height;
-		this.x = x+20;
-		
+		this.x = x;
 		this.y = y;
-		
 		this.width = width;
-		speed = 10;
 	}
 	void update() {
-		y -= speed;
+		y++;
 	}
 	void draw(Graphics g) {
-		g.setColor(Color.RED);
+		g.setColor(Color.YELLOW);
 		g.fillRect(x, y, width, height);
-		System.out.println(y);
 	}
 }

@@ -104,6 +104,9 @@ public void keyPressed(KeyEvent e) {
 		 r1.rleft =true;
 		 System.out.println("up");
 }
+	if(e.getKeyCode()==KeyEvent.VK_SPACE) {
+		 o1.addProjectile(new Projectiles(r1.x, r1.y, 10, 10));
+	}
 }
 @Override
 public void keyReleased(KeyEvent a) {

@@ -3,10 +3,12 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class ObjectManager {
+	int score;
 	boolean alienDead = false;
 	boolean projectileDead = false;
 	long enemyTimer;
 	int enemySpawnTime;
+
 	Rocketship r1;
 	ArrayList<Alien> alien = new ArrayList<Alien>();
 	ArrayList<Projectiles> projectiles = new ArrayList<>();
@@ -14,6 +16,8 @@ public class ObjectManager {
 	ObjectManager(Rocketship r1) {
 		this.r1 = r1;
 		this.enemySpawnTime = +500;
+		this.score = 0;
+
 	}
 
 	void update() {
@@ -72,6 +76,10 @@ public class ObjectManager {
 				if (p.collisionBox.intersects(a.collisionBox)) {
 					p.isAlive = false;
 					a.isAlive = false;
+
+					score += 1;
+					System.out.println(score);
+
 				}
 
 			}
@@ -83,5 +91,10 @@ public class ObjectManager {
 			}
 
 		}
+	}
+
+	int getscore() {
+		return score;
+
 	}
 }
